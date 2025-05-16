@@ -13,7 +13,7 @@ from eth2spec.utils import bls
 bls.Verify = lambda *args, **kwargs: True
 
 # --- Output location ---
-output_dir = "/Users/hamzaparekh/Library/CloudStorage/OneDrive-UTS/Documents/University Work/Honours/Honours Experimentation"
+output_dir = "/Users/hamzaparekh/Projects/Results"
 os.makedirs(output_dir, exist_ok=True)
 
 proc = psutil.Process(os.getpid())
@@ -23,10 +23,10 @@ proc = psutil.Process(os.getpid())
 def test_spec_block_simulation(spec, state):
     print("\n🧪 Running realistic spec.process_block simulation with mock blob data")
 
-    iterations_per_size = 5
-    payload_sizes = [128, 512, 1024]  # Simulate different blob data sizes
+    iterations_per_size = 50
+    payload_sizes = [64, 128, 256, 512, 1024, 2048, 4096, 8192]  # Simulate different blob data sizes
 
-    log_path = os.path.join(output_dir, "iot_spec_benchmark_with_blobs.csv")
+    log_path = os.path.join(output_dir, "ethereum_results.csv")
     with open(log_path, "w", newline="") as csvfile:
         writer = csv.writer(csvfile)
         writer.writerow(["Iteration", "PayloadSize", "Latency(s)", "CPU(%)", "Memory(MB)"])
